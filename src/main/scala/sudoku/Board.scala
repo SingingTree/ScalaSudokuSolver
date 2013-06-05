@@ -57,16 +57,16 @@ class Board(val board : Seq[Seq[Square]])
 		}
 	}
 
-	def updateBoard(b : Seq[Seq[Square]], solvableSquares : Seq[(Int, Int, Int)]) : Seq[Seq[Square]] = solvableSquares match
+	def updateBoard(b : Seq[Seq[Square]], solvableSquares : Seq[(Int, Int, Int)]) : Seq[Seq[Square]] =
 	{
-		case Seq(x, xs@_*) => // TODO: This can be updated to the more elegant "x :+ xs" with 2.10
-		{
-			val row = b(x._1)
-			val updatedRow = row.updated(x._2, new CompletedSquare(x._3))
-			val updatedBoard = b.updated(x._1, updatedRow)
-			updateBoard(updatedBoard, xs)
-		}
-		case Nil => b
+		solvableSquares.foldLeft(b)(
+			(board, solvableSquare) =>
+			{
+				val row = board(solvableSquare._1)
+				val updatedRow = row.updated(solvableSquare._2, new CompletedSquare(solvableSquare._3))
+				board.updated(solvableSquare._1, updatedRow)
+			}
+		)
 	}
 	
 	def iterateSolve = 
@@ -157,7 +157,7 @@ class Board(val board : Seq[Seq[Square]])
 		else guessedBoards.foldLeft(Set[Board]())((x, y) => x ++ y.guessNSquares(n -1))
 	}
 
-	def solve(remainingGuesses : Int = 2) : Board =
+	def solve(remainingGuesses : Int = 1) : Board =
 	{
 		if(full) this
 		else
