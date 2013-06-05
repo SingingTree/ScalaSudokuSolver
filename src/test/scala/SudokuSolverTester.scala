@@ -2,64 +2,64 @@ import sudoku._
 
 class SudokuSolverTester extends org.scalatest.FunSuite
 {
-	val emptyBoard = new Board(List(
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare)
+	val emptyBoard = new Board(Seq(
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare)
 	))
 
-	val easyBoard = new Board(List(
-		List(CompletedSquare(4), CompletedSquare(8), CompletedSquare(7), EmptySquare, CompletedSquare(5), EmptySquare, EmptySquare, CompletedSquare(6), EmptySquare),
-		List(CompletedSquare(9), EmptySquare, EmptySquare, CompletedSquare(4), EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(3)),
-		List(CompletedSquare(2), EmptySquare, CompletedSquare(6), EmptySquare, CompletedSquare(8), CompletedSquare(9), CompletedSquare(5), EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, CompletedSquare(4), EmptySquare, CompletedSquare(1), CompletedSquare(5), CompletedSquare(6), EmptySquare, EmptySquare),
-		List(CompletedSquare(1), EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(4), EmptySquare, CompletedSquare(5), EmptySquare),
-		List(EmptySquare, CompletedSquare(7), CompletedSquare(8), CompletedSquare(2), EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(8), EmptySquare, CompletedSquare(7), EmptySquare),
-		List(CompletedSquare(7), CompletedSquare(5), EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(3), EmptySquare),
-		List(EmptySquare, CompletedSquare(2), EmptySquare, EmptySquare, CompletedSquare(3), CompletedSquare(7), CompletedSquare(4), CompletedSquare(1), EmptySquare)
+	val easyBoard = new Board(Seq(
+		Seq(CompletedSquare(4), CompletedSquare(8), CompletedSquare(7), EmptySquare, CompletedSquare(5), EmptySquare, EmptySquare, CompletedSquare(6), EmptySquare),
+		Seq(CompletedSquare(9), EmptySquare, EmptySquare, CompletedSquare(4), EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(3)),
+		Seq(CompletedSquare(2), EmptySquare, CompletedSquare(6), EmptySquare, CompletedSquare(8), CompletedSquare(9), CompletedSquare(5), EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, CompletedSquare(4), EmptySquare, CompletedSquare(1), CompletedSquare(5), CompletedSquare(6), EmptySquare, EmptySquare),
+		Seq(CompletedSquare(1), EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(4), EmptySquare, CompletedSquare(5), EmptySquare),
+		Seq(EmptySquare, CompletedSquare(7), CompletedSquare(8), CompletedSquare(2), EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(8), EmptySquare, CompletedSquare(7), EmptySquare),
+		Seq(CompletedSquare(7), CompletedSquare(5), EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(3), EmptySquare),
+		Seq(EmptySquare, CompletedSquare(2), EmptySquare, EmptySquare, CompletedSquare(3), CompletedSquare(7), CompletedSquare(4), CompletedSquare(1), EmptySquare)
 	))
 
-	val easyBoardSolution = new Board(List(
-		List(CompletedSquare(4), CompletedSquare(8), CompletedSquare(7), CompletedSquare(3), CompletedSquare(5), CompletedSquare(1), CompletedSquare(9), CompletedSquare(6), CompletedSquare(2)),
-		List(CompletedSquare(9), CompletedSquare(1), CompletedSquare(5), CompletedSquare(4), CompletedSquare(2), CompletedSquare(6), CompletedSquare(7), CompletedSquare(8), CompletedSquare(3)),
-		List(CompletedSquare(2), CompletedSquare(3), CompletedSquare(6), CompletedSquare(7), CompletedSquare(8), CompletedSquare(9), CompletedSquare(5), CompletedSquare(4), CompletedSquare(1)),
-		List(CompletedSquare(3), CompletedSquare(9), CompletedSquare(4), CompletedSquare(8), CompletedSquare(1), CompletedSquare(5), CompletedSquare(6), CompletedSquare(2), CompletedSquare(7)),
-		List(CompletedSquare(1), CompletedSquare(6), CompletedSquare(2), CompletedSquare(9), CompletedSquare(7), CompletedSquare(4), CompletedSquare(3), CompletedSquare(5), CompletedSquare(8)),
-		List(CompletedSquare(5), CompletedSquare(7), CompletedSquare(8), CompletedSquare(2), CompletedSquare(6), CompletedSquare(3), CompletedSquare(1), CompletedSquare(9), CompletedSquare(4)),
-		List(CompletedSquare(6), CompletedSquare(4), CompletedSquare(3), CompletedSquare(1), CompletedSquare(9), CompletedSquare(8), CompletedSquare(2), CompletedSquare(7), CompletedSquare(5)),
-		List(CompletedSquare(7), CompletedSquare(5), CompletedSquare(1), CompletedSquare(6), CompletedSquare(4), CompletedSquare(2), CompletedSquare(8), CompletedSquare(3), CompletedSquare(9)),
-		List(CompletedSquare(8), CompletedSquare(2), CompletedSquare(9), CompletedSquare(5), CompletedSquare(3), CompletedSquare(7), CompletedSquare(4), CompletedSquare(1), CompletedSquare(6))
+	val easyBoardSolution = new Board(Seq(
+		Seq(CompletedSquare(4), CompletedSquare(8), CompletedSquare(7), CompletedSquare(3), CompletedSquare(5), CompletedSquare(1), CompletedSquare(9), CompletedSquare(6), CompletedSquare(2)),
+		Seq(CompletedSquare(9), CompletedSquare(1), CompletedSquare(5), CompletedSquare(4), CompletedSquare(2), CompletedSquare(6), CompletedSquare(7), CompletedSquare(8), CompletedSquare(3)),
+		Seq(CompletedSquare(2), CompletedSquare(3), CompletedSquare(6), CompletedSquare(7), CompletedSquare(8), CompletedSquare(9), CompletedSquare(5), CompletedSquare(4), CompletedSquare(1)),
+		Seq(CompletedSquare(3), CompletedSquare(9), CompletedSquare(4), CompletedSquare(8), CompletedSquare(1), CompletedSquare(5), CompletedSquare(6), CompletedSquare(2), CompletedSquare(7)),
+		Seq(CompletedSquare(1), CompletedSquare(6), CompletedSquare(2), CompletedSquare(9), CompletedSquare(7), CompletedSquare(4), CompletedSquare(3), CompletedSquare(5), CompletedSquare(8)),
+		Seq(CompletedSquare(5), CompletedSquare(7), CompletedSquare(8), CompletedSquare(2), CompletedSquare(6), CompletedSquare(3), CompletedSquare(1), CompletedSquare(9), CompletedSquare(4)),
+		Seq(CompletedSquare(6), CompletedSquare(4), CompletedSquare(3), CompletedSquare(1), CompletedSquare(9), CompletedSquare(8), CompletedSquare(2), CompletedSquare(7), CompletedSquare(5)),
+		Seq(CompletedSquare(7), CompletedSquare(5), CompletedSquare(1), CompletedSquare(6), CompletedSquare(4), CompletedSquare(2), CompletedSquare(8), CompletedSquare(3), CompletedSquare(9)),
+		Seq(CompletedSquare(8), CompletedSquare(2), CompletedSquare(9), CompletedSquare(5), CompletedSquare(3), CompletedSquare(7), CompletedSquare(4), CompletedSquare(1), CompletedSquare(6))
 	))
 
-	val easyBoardIncorrectSolution = new Board(List(
-		List(CompletedSquare(4), CompletedSquare(8), CompletedSquare(7), CompletedSquare(3), CompletedSquare(5), CompletedSquare(1), CompletedSquare(9), CompletedSquare(6), CompletedSquare(2)),
-		List(CompletedSquare(9), CompletedSquare(1), CompletedSquare(5), CompletedSquare(4), CompletedSquare(2), CompletedSquare(6), CompletedSquare(7), CompletedSquare(8), CompletedSquare(3)),
-		List(CompletedSquare(2), CompletedSquare(3), CompletedSquare(6), CompletedSquare(7), CompletedSquare(8), CompletedSquare(9), CompletedSquare(5), CompletedSquare(4), CompletedSquare(1)),
-		List(CompletedSquare(3), CompletedSquare(9), CompletedSquare(4), CompletedSquare(8), CompletedSquare(1), CompletedSquare(5), CompletedSquare(6), CompletedSquare(2), CompletedSquare(7)),
-		List(CompletedSquare(1), CompletedSquare(6), CompletedSquare(2), CompletedSquare(9), CompletedSquare(7), CompletedSquare(4), CompletedSquare(3), CompletedSquare(5), CompletedSquare(8)),
-		List(CompletedSquare(5), CompletedSquare(7), CompletedSquare(8), CompletedSquare(2), CompletedSquare(6), CompletedSquare(3), CompletedSquare(1), CompletedSquare(9), CompletedSquare(4)),
-		List(CompletedSquare(6), CompletedSquare(4), CompletedSquare(3), CompletedSquare(1), CompletedSquare(9), CompletedSquare(8), CompletedSquare(2), CompletedSquare(7), CompletedSquare(5)),
-		List(CompletedSquare(7), CompletedSquare(5), CompletedSquare(1), CompletedSquare(6), CompletedSquare(4), CompletedSquare(2), CompletedSquare(8), CompletedSquare(3), CompletedSquare(9)),
-		List(CompletedSquare(2), CompletedSquare(2), CompletedSquare(9), CompletedSquare(5), CompletedSquare(3), CompletedSquare(7), CompletedSquare(4), CompletedSquare(1), CompletedSquare(6))
+	val easyBoardIncorrectSolution = new Board(Seq(
+		Seq(CompletedSquare(4), CompletedSquare(8), CompletedSquare(7), CompletedSquare(3), CompletedSquare(5), CompletedSquare(1), CompletedSquare(9), CompletedSquare(6), CompletedSquare(2)),
+		Seq(CompletedSquare(9), CompletedSquare(1), CompletedSquare(5), CompletedSquare(4), CompletedSquare(2), CompletedSquare(6), CompletedSquare(7), CompletedSquare(8), CompletedSquare(3)),
+		Seq(CompletedSquare(2), CompletedSquare(3), CompletedSquare(6), CompletedSquare(7), CompletedSquare(8), CompletedSquare(9), CompletedSquare(5), CompletedSquare(4), CompletedSquare(1)),
+		Seq(CompletedSquare(3), CompletedSquare(9), CompletedSquare(4), CompletedSquare(8), CompletedSquare(1), CompletedSquare(5), CompletedSquare(6), CompletedSquare(2), CompletedSquare(7)),
+		Seq(CompletedSquare(1), CompletedSquare(6), CompletedSquare(2), CompletedSquare(9), CompletedSquare(7), CompletedSquare(4), CompletedSquare(3), CompletedSquare(5), CompletedSquare(8)),
+		Seq(CompletedSquare(5), CompletedSquare(7), CompletedSquare(8), CompletedSquare(2), CompletedSquare(6), CompletedSquare(3), CompletedSquare(1), CompletedSquare(9), CompletedSquare(4)),
+		Seq(CompletedSquare(6), CompletedSquare(4), CompletedSquare(3), CompletedSquare(1), CompletedSquare(9), CompletedSquare(8), CompletedSquare(2), CompletedSquare(7), CompletedSquare(5)),
+		Seq(CompletedSquare(7), CompletedSquare(5), CompletedSquare(1), CompletedSquare(6), CompletedSquare(4), CompletedSquare(2), CompletedSquare(8), CompletedSquare(3), CompletedSquare(9)),
+		Seq(CompletedSquare(2), CompletedSquare(2), CompletedSquare(9), CompletedSquare(5), CompletedSquare(3), CompletedSquare(7), CompletedSquare(4), CompletedSquare(1), CompletedSquare(6))
 	))
 
-	val hardBoard = new Board(List(
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(6), CompletedSquare(1), EmptySquare, EmptySquare, CompletedSquare(2)),
-		List(CompletedSquare(1), EmptySquare, EmptySquare, CompletedSquare(7), EmptySquare, EmptySquare, EmptySquare, CompletedSquare(4), EmptySquare),
-		List(EmptySquare, EmptySquare, EmptySquare, CompletedSquare(8), EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, CompletedSquare(6), CompletedSquare(9), EmptySquare, CompletedSquare(2), EmptySquare, EmptySquare, EmptySquare),
-		List(EmptySquare, EmptySquare, CompletedSquare(5), EmptySquare, CompletedSquare(8), EmptySquare, EmptySquare, EmptySquare, CompletedSquare(3)),
-		List(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(5), CompletedSquare(4)),
-		List(EmptySquare, EmptySquare, CompletedSquare(7), EmptySquare, EmptySquare, EmptySquare, CompletedSquare(5), EmptySquare, CompletedSquare(6)),
-		List(CompletedSquare(4), EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(7), EmptySquare, EmptySquare, CompletedSquare(9)),
-		List(CompletedSquare(5), EmptySquare, CompletedSquare(3), EmptySquare, EmptySquare, CompletedSquare(9), EmptySquare, EmptySquare, CompletedSquare(8))
+	val hardBoard = new Board(Seq(
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(6), CompletedSquare(1), EmptySquare, EmptySquare, CompletedSquare(2)),
+		Seq(CompletedSquare(1), EmptySquare, EmptySquare, CompletedSquare(7), EmptySquare, EmptySquare, EmptySquare, CompletedSquare(4), EmptySquare),
+		Seq(EmptySquare, EmptySquare, EmptySquare, CompletedSquare(8), EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, CompletedSquare(6), CompletedSquare(9), EmptySquare, CompletedSquare(2), EmptySquare, EmptySquare, EmptySquare),
+		Seq(EmptySquare, EmptySquare, CompletedSquare(5), EmptySquare, CompletedSquare(8), EmptySquare, EmptySquare, EmptySquare, CompletedSquare(3)),
+		Seq(EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(5), CompletedSquare(4)),
+		Seq(EmptySquare, EmptySquare, CompletedSquare(7), EmptySquare, EmptySquare, EmptySquare, CompletedSquare(5), EmptySquare, CompletedSquare(6)),
+		Seq(CompletedSquare(4), EmptySquare, EmptySquare, EmptySquare, EmptySquare, CompletedSquare(7), EmptySquare, EmptySquare, CompletedSquare(9)),
+		Seq(CompletedSquare(5), EmptySquare, CompletedSquare(3), EmptySquare, EmptySquare, CompletedSquare(9), EmptySquare, EmptySquare, CompletedSquare(8))
 	))
 
 	test("Square comparisons")

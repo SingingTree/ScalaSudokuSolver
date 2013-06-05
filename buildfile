@@ -9,5 +9,5 @@ Buildr.settings.build['scalac.incremental'] = true
 define 'SudokuSolver' do
 	compile.with('org.scala-lang:scala-swing:jar:' + Scala.version)
 	compile.using :warnings => true, :deprecation => true, :other=>'-unchecked'
-	run.using :main => "sudoku.HelloWorld"
+	run.using :main => "sudoku.SudokuGUI"
 end

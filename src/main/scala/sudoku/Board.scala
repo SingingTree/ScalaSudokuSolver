@@ -14,7 +14,7 @@ object Board
 		).toSet
 }
 
-class Board(val board : List[List[Square]])
+class Board(val board : Seq[Seq[Square]])
 {
 	def subboardMembers(subboardRow : Int, subboardCol : Int) : Set[Square] = 
 		(for
@@ -57,9 +57,9 @@ class Board(val board : List[List[Square]])
 		}
 	}
 
-	def updateBoard(b : List[List[Square]], solvableSquares : List[(Int, Int, Int)]) : List[List[Square]] = solvableSquares match
+	def updateBoard(b : Seq[Seq[Square]], solvableSquares : Seq[(Int, Int, Int)]) : Seq[Seq[Square]] = solvableSquares match
 	{
-		case x :: xs =>
+		case Seq(x, xs@_*) => // TODO: This can be updated to the more elegant "x :+ xs" with 2.10
 		{
 			val row = b(x._1)
 			val updatedRow = row.updated(x._2, new CompletedSquare(x._3))
@@ -72,7 +72,7 @@ class Board(val board : List[List[Square]])
 	def iterateSolve = 
 	{	
 
-		val possibleVals : List[List[Set[Int]]] =
+		val possibleVals : Seq[Seq[Set[Int]]] =
 		(for
 		{
 			row <- (0 until board.length)
@@ -80,22 +80,22 @@ class Board(val board : List[List[Square]])
 			(for
 			{
 				col <- (0 until board(row).length)
-			} yield possibleValues(row, col)).toList
+			} yield possibleValues(row, col))
 		} yield possValsForRow
-		).toList
+		)
 
 		// Solves squares if they only have 1 possible number
-		val simpleSolvableSquares : List[(Int, Int, Int)] =
+		val simpleSolvableSquares : Seq[(Int, Int, Int)] =
 		(for
 		{
 			row <- (0 until board.length)
 			col <- (0 until board(row).length)
 			solvableSquare = board(row)(col) if(solvableSquare == EmptySquare && possibleVals(row)(col).size == 1)
 		} yield (row, col, possibleVals(row)(col).head)
-		).toList
+		)
 
 		// Solves squares by comparing possibilities to other squares in same row/col/subboard, if no other squares share a possibility this square must be solved with it
-		val moreComplexSolvableSquares : List[(Int, Int, Int)] =
+		val moreComplexSolvableSquares : Seq[(Int, Int, Int)] =
 		(for
 		{
 			row <- (0 until board.length)
@@ -125,7 +125,7 @@ class Board(val board : List[List[Square]])
 				)	
 			)
 		} yield (row, col, posVal)
-		).toList
+		)
 
 		new Board(updateBoard(board, simpleSolvableSquares union moreComplexSolvableSquares))
 	}
@@ -149,7 +149,7 @@ class Board(val board : List[List[Square]])
 			row <- (0 until board.length)
 			col <- (0 until board(row).length)
 			posVal <- possibleValues(row, col) if(board(row)(col) == EmptySquare) // Only take possible values for squares that aren't solved
-			updatedRow : List[Square] = board(row).updated(col, CompletedSquare(posVal))
+			updatedRow : Seq[Square] = board(row).updated(col, CompletedSquare(posVal))
 		} yield new Board(board.updated(row, updatedRow))
 		).toSet
 

@@ -2,13 +2,13 @@ package sudoku
 
 object BoardParser
 {
-	def parseBoard(board : List[String]) : Board =
+	def parseBoard(board : Seq[String]) : Board =
 		new Board(
 			for
 			{
 				row <- board
-				squareRow : List[Square] =
-				(for
+				squareRow : Seq[Square] =
+				for
 				{
 					col <- row
 					s : Square = col match
@@ -16,7 +16,7 @@ object BoardParser
 						case x if('0' to '9' contains x) => new CompletedSquare(x.asInstanceOf[Int] - '0');
 						case _ => EmptySquare
 					}
-				} yield s).toList
+				} yield s
 			} yield squareRow
 		)
 		
