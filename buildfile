@@ -1,6 +1,6 @@
 # Buildr.settings.build['scala.version'] = '2.10.0' # Need to tell which version we want before the require (2.10.X seems broken as of 2013 - 05 - 23)
 
-#need a 32 bit version of Java to go with 32 bit version of ruby (Otherwise get a can't start VM error message)
+# need a 32 bit version of Java to go with 32 bit version of ruby (Otherwise get a can't start VM error message)
 ENV['JAVA_HOME'] = 'C:\Program Files (x86)\Java\jdk1.7.0_21'
 
 #need this for jmock (default repos don't have it seems)
@@ -9,8 +9,7 @@ repositories.remote << 'http://repo1.maven.org/maven2'
 require 'buildr/scala'
 require 'fileutils'
 
-# Profile is specific to our project, but we don't want to have to qualify it (i.e. in the shell "profile" is nicer than "SudokuSolver:profile")
-Project.local_task :profile 
+# uberjar is specific to our project, but we don't want to have to qualify it (i.e. in the shell "uberjar" is nicer than "SudokuSolver:uberjar")
 Project.local_task :uberjar
 
 Buildr.settings.build['scalac.incremental'] = true
@@ -50,10 +49,5 @@ define 'SudokuSolver' do
 		puts "Creating #{_("target/#{project.name}-#{project.version}.jar")}" 
 		`jar -cfm #{_("target/#{project.name}-#{project.version}.jar")} #{_(assembly_dir)}/META-INF/MANIFEST.MF .`
 		Dir.chdir present_dir
-	end
-
-	# Profiling depends upon compiling
-	task :profile => :compile do
-		puts "Profiling"
 	end
 end
